@@ -5,7 +5,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
 
-  // 🔴 MUST match your GitHub repo name
+  // 🔴 MUST match repo name EXACTLY
   base: '/Test/',
 
   resolve: {
@@ -14,8 +14,8 @@ export default defineConfig({
     },
   },
 
-  // 🔴 IMPORTANT: build to docs (GitHub Pages supports this)
   build: {
     outDir: 'docs',
+    assetsDir: 'assets',
   },
 })
