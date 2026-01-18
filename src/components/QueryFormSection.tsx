@@ -1,7 +1,14 @@
-import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { Send, Loader2, Sparkles } from 'lucide-react';
+import {
+  Send,
+  Loader2,
+  Sparkles,
+  Phone,
+  Mail,
+  User
+} from 'lucide-react';
 
 export default function QueryFormSection() {
   const [loading, setLoading] = useState(false);
@@ -10,7 +17,6 @@ export default function QueryFormSection() {
     e.preventDefault();
     setLoading(true);
 
-    // Static-site simulation
     setTimeout(() => {
       setLoading(false);
       toast.success('Your query has been submitted successfully!');
@@ -18,48 +24,93 @@ export default function QueryFormSection() {
   };
 
   return (
-    <section className="py-16 px-4">
-      <div className="max-w-xl mx-auto">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Sparkles className="w-6 h-6" />
-          Submit Your Query
-        </h2>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            placeholder="Your Name"
-            required
-            className="w-full border rounded-md px-3 py-2"
-          />
-
-          <input
-            type="email"
-            placeholder="Your Email"
-            required
-            className="w-full border rounded-md px-3 py-2"
-          />
-
-          <textarea
-            placeholder="Your Message"
-            required
-            className="w-full border rounded-md px-3 py-2 min-h-[120px]"
-          />
-
-          <Button type="submit" disabled={loading} className="w-full">
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <Loader2 className="animate-spin w-4 h-4" />
-                Sending...
+    <section
+      id="query"
+      className="py-28 bg-gradient-to-b from-background to-accent/10"
+    >
+      <div className="container mx-auto px-4">
+        <div className="max-w-xl mx-auto bg-card border border-border rounded-3xl shadow-xl p-8 md:p-10">
+          
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-semibold text-primary">
+                Quick Contact
               </span>
-            ) : (
-              <span className="flex items-center gap-2">
-                <Send className="w-4 h-4" />
-                Submit
-              </span>
-            )}
-          </Button>
-        </form>
+            </div>
+            <h2 className="text-3xl font-bold text-foreground">
+              Submit Your Query
+            </h2>
+            <p className="text-muted-foreground mt-2">
+              Our team will respond shortly
+            </p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+
+            {/* Name */}
+            <div className="relative">
+              <User className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+                className="w-full pl-11 pr-4 py-3 rounded-xl border border-input bg-background focus:ring-2 focus:ring-primary outline-none"
+              />
+            </div>
+
+            {/* Email */}
+            <div className="relative">
+              <Mail className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+                className="w-full pl-11 pr-4 py-3 rounded-xl border border-input bg-background focus:ring-2 focus:ring-primary outline-none"
+              />
+            </div>
+
+            {/* Phone */}
+            <div className="relative">
+              <Phone className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+              <input
+                type="tel"
+                placeholder="Contact Number"
+                required
+                className="w-full pl-11 pr-4 py-3 rounded-xl border border-input bg-background focus:ring-2 focus:ring-primary outline-none"
+              />
+            </div>
+
+            {/* Message */}
+            <textarea
+              placeholder="Your Message"
+              required
+              className="w-full px-4 py-3 rounded-xl border border-input bg-background min-h-[140px] resize-none focus:ring-2 focus:ring-primary outline-none"
+            />
+
+            {/* Submit */}
+            <Button
+              type="submit"
+              size="lg"
+              disabled={loading}
+              className="w-full text-lg mt-2"
+            >
+              {loading ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Sending...
+                </span>
+              ) : (
+                <span className="flex items-center gap-2">
+                  <Send className="w-5 h-5" />
+                  Submit Query
+                </span>
+              )}
+            </Button>
+          </form>
+        </div>
       </div>
     </section>
   );
