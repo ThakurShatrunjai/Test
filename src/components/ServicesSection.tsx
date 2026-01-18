@@ -50,11 +50,7 @@ export default function ServicesSection() {
       className="relative py-28 bg-gradient-to-b from-background via-accent/10 to-background"
     >
       <div className="container mx-auto px-4">
-        <SectionBadge label="Our Services" />
-<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-5 text-center">
-  Comprehensive Logistics Solutions
-</h2>
-
+        
         {/* Section header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-20 transition-all duration-1000 ${
