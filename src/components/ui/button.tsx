@@ -12,27 +12,38 @@ export function Button({
   size = "default",
   ...props
 }: ButtonProps) {
-  const base =
-    "inline-flex items-center justify-center rounded-md font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  let variantClasses = "";
+  let sizeClasses = "";
 
-  const variantClasses = {
+  switch (variant) {
+    case "outline":
+      variantClasses =
+        "border-2 border-primary text-primary bg-transparent hover:bg-primary/10";
+      break;
+    case "ghost":
+      variantClasses =
+        "bg-transparent text-foreground hover:bg-accent";
+      break;
     default:
-      "bg-primary text-white hover:bg-primary/90 focus:ring-primary",
-    outline:
-      "border border-border bg-transparent text-foreground hover:bg-accent",
-    ghost:
-      "bg-transparent text-foreground hover:bg-accent",
-  }[variant];
+      // ⭐ MAIN FIX: visible primary button
+      variantClasses =
+        "bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl";
+  }
 
-  const sizeClasses = {
-    sm: "h-9 px-3 text-sm",
-    default: "h-11 px-5 text-base",
-    lg: "h-14 px-8 text-lg",
-  }[size];
+  switch (size) {
+    case "sm":
+      sizeClasses = "px-4 py-2 text-sm";
+      break;
+    case "lg":
+      sizeClasses = "px-8 py-4 text-lg font-semibold";
+      break;
+    default:
+      sizeClasses = "px-6 py-3";
+  }
 
   return (
     <button
-      className={`${base} ${variantClasses} ${sizeClasses} ${className}`}
+      className={`inline-flex items-center justify-center rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-60 disabled:cursor-not-allowed ${variantClasses} ${sizeClasses} ${className}`}
       {...props}
     />
   );
